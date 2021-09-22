@@ -1,8 +1,7 @@
 name: GitHub Actions Demo
 on:
   pull_request:
-    types:
-      - "synchronize"
+    types: [synchronize]
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
@@ -18,8 +17,8 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
-      - run: echo hello > ${{ env.RUNNER_TEMP}}/test.txt
+      - run: echo hello > ${{ runner.temp }}/test.txt
       - uses: actions/upload-artifact@v2
         with:
-          name: my-artifact
-          path: ${{ env.RUNNER_TEMP}}/test.txt
+          name: my-artifact-after
+          path: ${{ runner.temp }}/test.txt
